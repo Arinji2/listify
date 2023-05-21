@@ -78,7 +78,13 @@ function Screen3({ tracks }: { tracks: Track[] }) {
           {selection.track.artists.map((artist) => artist.name).join(", ")}
         </h2>
         <p
-          onClick={() => window.open(selection.track.external_urls.spotify)}
+          onClick={() =>
+            window.open(
+              selection.track.external_urls.spotify,
+              "_blank",
+              "noopener noreferrer"
+            )
+          }
           className="z-30 m-2 mb-5 rounded-lg border-4 border-[#b88635] bg-[#b88635] p-4 text-2xl font-bold text-white transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-white hover:text-[#b88635]"
         >
           Open in Spotify
@@ -146,7 +152,14 @@ const TrackCard = ({
         quality={100}
       />
       <div
-        onClick={() => window.open(track.track.external_urls.spotify)}
+        onClick={() => {
+          console.log(track.track.external_urls.spotify);
+          window.open(
+            track.track.external_urls.spotify,
+            "_blank",
+            "noopener noreferrer"
+          );
+        }}
         className={`${
           images ? "block " : "hidden "
         }absolute h-full w-full bg-[#1E1E1E] opacity-70`}
