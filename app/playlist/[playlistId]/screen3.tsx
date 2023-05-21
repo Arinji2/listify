@@ -11,8 +11,9 @@ function Screen3({ tracks }: { tracks: Track[] }) {
         {tracks.map((track, i) =>
           track.track.album.images[0] === undefined ? null : (
             <div
+              onClick={() => window.open(track.track.external_urls.spotify)}
               key={i}
-              className="group relative mt-20 flex h-[400px] w-[300px] shrink-0 flex-col items-start justify-end gap-2 overflow-hidden rounded-2xl bg-black"
+              className="group relative mt-20 flex h-[400px] w-[300px] shrink-0 flex-col items-start justify-end gap-2 overflow-hidden rounded-2xl bg-black hover:cursor-pointer"
             >
               <Image
                 src={track.track.album.images[0].url}

@@ -34,7 +34,7 @@ export const getPlaylist = async (id: string, access_token: string) => {
 
 export const getPlaylistTracks = async (id: string, access_token: string) => {
   const res = await fetch(
-    `https://api.spotify.com/v1/playlists/${id}/tracks?fields=items(track(name,artists(name),album(images)))`,
+    `https://api.spotify.com/v1/playlists/${id}/tracks?fields=items(track(name,artists(name),album(images),external_urls(spotify)))`,
     {
       headers: {
         Authorization: `Bearer ${access_token}`,

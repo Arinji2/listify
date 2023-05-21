@@ -30,6 +30,9 @@ export interface Track {
     album: {
       images: Images[];
     };
+    external_urls: {
+      spotify: string;
+    };
   };
 }
 
