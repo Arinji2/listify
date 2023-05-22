@@ -153,7 +153,7 @@ const TrackCard = ({
       />
       <div
         onClick={() => {
-          console.log(track.track.external_urls.spotify);
+          console.log(track.track);
           window.open(
             track.track.external_urls.spotify,
             "_blank",
