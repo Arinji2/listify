@@ -6,7 +6,7 @@ interface ErrorProps {
 }
 function Error({ flag, message }: ErrorProps) {
   return flag ? (
-    <div className="fixed top-0 flex h-[100vh] w-full translate-y-0 flex-col items-center justify-center gap-10 bg-[#D1495B] text-center transition-all duration-500 ease-in-out">
+    <div className="fixed top-0 z-[1000] flex h-[100vh] w-full translate-y-0 flex-col items-center justify-center gap-10 bg-[#D1495B] text-center transition-all duration-500 ease-in-out">
       <h1 className="text-[50px] font-bold text-white md:text-[90px]">
         Uh Oh! An Error Occurred
       </h1>

@@ -45,3 +45,28 @@ export const uploadStep = async (
     url: playlist.external_urls.spotify,
   });
 };
+
+export const compareStep = async (
+  primaryTracks: Track[],
+  secondaryTracks: Track[]
+) => {
+  const arrayOfPrimaryObs: Track[] = [];
+  for (const primaryTrack of primaryTracks) {
+    const primaryTrackName = primaryTrack.track.name;
+    let isFound = false;
+
+    for (const secondaryTrack of secondaryTracks) {
+      const secondaryTrackName = secondaryTrack.track.name;
+
+      if (primaryTrackName === secondaryTrackName) {
+        isFound = true;
+        break;
+      }
+    }
+
+    if (!isFound) {
+      arrayOfPrimaryObs.push(primaryTrack);
+    }
+  }
+  return arrayOfPrimaryObs;
+};

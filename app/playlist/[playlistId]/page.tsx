@@ -1,11 +1,8 @@
 import { supabaseClient } from "@/utils/supabaseClient";
-import { Data } from "@/utils/types";
-import Screen1 from "./screen1";
-import Screen2 from "./screen2";
-import Screen3 from "./screen3";
-import Footer from "./screen4";
+import Image from "next/image";
+import Options from "./option";
 
-export default async function Page({
+export default async function Home({
   params,
 }: {
   params: { playlistId: string };
@@ -15,25 +12,34 @@ export default async function Page({
     .select("*")
     .eq("playlist_id", params.playlistId)
     .single();
-
-  const data = res.data as Data;
-
+  const name = res.data?.name as string;
   return (
-    <div className="h-fit w-full">
-      <Screen1
-        playlistName={data.name}
-        userName={data.user_name}
-        image={data.images}
-        description={data.description}
-        url={data.url}
-      />
-      <Screen2
-        songs={data.tracks.length}
-        followers={data.followers}
-        userName={data.user_name}
-      />
-      <Screen3 tracks={data.tracks} />
-      <Footer />
+    <div className="flex h-[100svh] w-full flex-col items-center justify-start">
+      <div className="fixed top-0 h-[100svh] w-full">
+        <Image
+          src={"/screen1.jpeg"}
+          fill
+          className="absolute object-cover"
+          alt="Wallpaper"
+        />
+        <div className="absolute h-full w-full bg-[#1E1E1E] opacity-50"></div>
+      </div>
+
+      <h1 className="z-20 mt-10 text-[50px] font-bold text-white md:text-[80px]">
+        {name}
+      </h1>
+      <div className="z-20 flex h-full w-full flex-row flex-wrap items-center justify-evenly gap-5">
+        <Options
+          image={`/hearing.svg`}
+          link={`${params.playlistId}/view`}
+          name="View"
+        />
+        <Options
+          image={`/searching.svg`}
+          link={`${params.playlistId}/compare`}
+          name="Compare"
+        />
+      </div>
     </div>
   );
 }
