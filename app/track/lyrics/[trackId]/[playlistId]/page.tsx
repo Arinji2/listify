@@ -38,7 +38,9 @@ export default async function Lyrics({
         </div>
         <div className="z-[100] h-full w-full">
           {error ? (
-            <h1>No Lyrics Found!</h1>
+            <h1 className="text-center text-6xl font-bold text-white">
+              No Lyrics Found!
+            </h1>
           ) : (
             lyrics.map((lyric: string, i: number) => (
               <LyricText lyrics={lyric} index={i} key={i} />
