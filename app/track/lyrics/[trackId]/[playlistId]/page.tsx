@@ -2,7 +2,6 @@ import RedirectButton from "@/app/playlist/[playlistId]/compare/[secondaryPlayli
 import {
   getAccessToken,
   getPlaylist,
-  getRandomColor,
   getTrackLyrics,
   getTrackName,
 } from "@/utils/fetchFunctions";
