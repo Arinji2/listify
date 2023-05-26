@@ -32,7 +32,7 @@ export default async function Page({
         followers={data.followers}
         userName={data.user_name}
       />
-      <Screen3 tracks={data.tracks} />
+      <Screen3 tracks={data.tracks} id={params.playlistId} />
       <Footer />
     </div>
   );

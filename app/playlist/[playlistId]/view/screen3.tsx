@@ -11,8 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { TrackCard } from "../trackCard";
+import Link from "next/link";
 
-function Screen3({ tracks }: { tracks: Track[] }) {
+function Screen3({ tracks, id }: { tracks: Track[]; id: string }) {
   const [selection, setSelection] = useState<Track>({
     track: {
       name: "",
@@ -22,10 +23,6 @@ function Screen3({ tracks }: { tracks: Track[] }) {
     },
   });
 
-  useEffect(() => {
-    console.log(selection);
-    console.log(selection.track.name);
-  }, [selection]);
   const [images, setImages] = useState(true);
   return (
     <div className="flex h-fit min-h-[100svh] w-full flex-col items-center justify-start bg-[#1E1E1E]">
@@ -46,7 +43,7 @@ function Screen3({ tracks }: { tracks: Track[] }) {
           selection.track.name === ""
             ? "translate-x-[4000px] "
             : "-translate-x-[50%] "
-        }left-[50%] fixed top-[50%] z-[1000] flex h-fit min-h-[60vh] w-[90vw] -translate-y-[50%] flex-col items-center justify-start gap-20 overflow-hidden rounded-lg bg-black text-center transition-all duration-500 ease-in-out md:h-[90vh] md:w-[50vw]`}
+        }left-[50%] fixed top-[50%] z-[1000] flex h-fit min-h-[60vh] w-[90vw] -translate-y-[50%] flex-col items-center justify-start gap-10 overflow-hidden rounded-lg bg-black text-center transition-all duration-500 ease-in-out md:min-h-[90vh] md:w-[50vw]`}
       >
         <FontAwesomeIcon
           icon={faTimesCircle as IconProp}
@@ -89,6 +86,14 @@ function Screen3({ tracks }: { tracks: Track[] }) {
         >
           Open in Spotify
         </p>
+        <Link
+          href={`/track/lyrics/${selection.track.external_urls.spotify.substring(
+            selection.track.external_urls.spotify.lastIndexOf("/") + 1
+          )}/${id}`}
+          className="z-30  rounded-lg border-4 border-[#b88635] bg-[#b88635] p-4 text-2xl font-bold text-white transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-white hover:text-[#b88635]"
+        >
+          View Lyrics
+        </Link>
       </div>
 
       <div

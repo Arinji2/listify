@@ -46,3 +46,8 @@ export interface Data {
   description: string;
   url: string;
 }
+
+export interface Lyrics {
+  lyrics: string[];
+  error: boolean;
+}

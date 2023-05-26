@@ -52,7 +52,7 @@ function Choice2({ id }: { id: string }) {
           onChange={(e) => setLink(e.target.value)}
         ></input>
         <p
-          className="absolute bottom-20 z-20 rounded-lg border-4 border-green-500 bg-green-500 p-2 pl-4 pr-4 text-3xl font-bold text-white transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-white hover:text-green-500"
+          className="absolute bottom-5 z-20 rounded-lg border-4 border-green-500 bg-green-500 p-2 pl-4 pr-4 text-3xl font-bold text-white transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-white hover:text-green-500 md:bottom-20"
           onClick={handleError}
         >
           Set Playlist

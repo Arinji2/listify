@@ -1,4 +1,4 @@
-import { Playlist, Track } from "./types";
+import { Lyrics, Playlist, Track } from "./types";
 
 export const getAccessToken = async () => {
   const authData = Buffer.from(
@@ -43,4 +43,31 @@ export const getPlaylistTracks = async (id: string, access_token: string) => {
   );
   const tracks = await res.json();
   return tracks.items as Track[];
+};
+
+export const getTrackLyrics = async (trackId: string) => {
+  const res = await fetch(
+    `https://spotify-lyric-api.herokuapp.com/?trackid=${trackId}&format=lrc`
+  );
+  const lyrics = await res.json();
+  const finalLyrics = [];
+  if (lyrics.error === true) finalLyrics.push("null");
+  else
+    lyrics.lines.forEach((line: any) => {
+      finalLyrics.push(line.words);
+    });
+  return {
+    lyrics: finalLyrics,
+    error: finalLyrics[0] === "null" ? true : false,
+  } as Lyrics;
+};
+
+export const getTrackName = async (id: string, access_token: string) => {
+  const res = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+  const track = await res.json();
+  return track.name as string;
 };
